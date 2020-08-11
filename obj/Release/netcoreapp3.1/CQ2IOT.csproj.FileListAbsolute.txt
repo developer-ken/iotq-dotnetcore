@@ -1,9 +1,0 @@
-D:\Development\LuYeGroupMana\CQ2IOT_HOST\CQ2IOT\bin\Release\netcoreapp3.1\CQ2IOT.deps.json
-D:\Development\LuYeGroupMana\CQ2IOT_HOST\CQ2IOT\bin\Release\netcoreapp3.1\CQ2IOT.dll
-D:\Development\LuYeGroupMana\CQ2IOT_HOST\CQ2IOT\bin\Release\netcoreapp3.1\CQ2IOT.pdb
-D:\Development\LuYeGroupMana\CQ2IOT_HOST\CQ2IOT\obj\Release\netcoreapp3.1\CQ2IOT.csprojAssemblyReference.cache
-D:\Development\LuYeGroupMana\CQ2IOT_HOST\CQ2IOT\obj\Release\netcoreapp3.1\CQ2IOT.AssemblyInfoInputs.cache
-D:\Development\LuYeGroupMana\CQ2IOT_HOST\CQ2IOT\obj\Release\netcoreapp3.1\CQ2IOT.AssemblyInfo.cs
-D:\Development\LuYeGroupMana\CQ2IOT_HOST\CQ2IOT\obj\Release\netcoreapp3.1\CQ2IOT.csproj.CoreCompileInputs.cache
-D:\Development\LuYeGroupMana\CQ2IOT_HOST\CQ2IOT\obj\Release\netcoreapp3.1\CQ2IOT.dll
-D:\Development\LuYeGroupMana\CQ2IOT_HOST\CQ2IOT\obj\Release\netcoreapp3.1\CQ2IOT.pdb
