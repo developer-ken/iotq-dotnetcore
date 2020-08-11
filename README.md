@@ -15,7 +15,7 @@ Do not forget to star my projcet if you like it.记得右上角给颗星星哦
         static void Main(string[] args)
         {
             pThreadPool pool = new pThreadPool();
-            EventHost host = new EventHost("192.168.1.107", 3098118320, pool, logger);//这里改成你的机器人ip和QQ号
+            EventHost host = new EventHost("192.168.1.233333", 1234567890, pool, logger);//这里改成你的机器人ip和QQ号
             //上面的代码初始化了IOTQQ的通讯库
 
             IOTQEventHandler evh = new IOTQEventHandler(host);//创建事件管理器，用于把来自IOTQQ的事件信息分类
