@@ -22,7 +22,7 @@ _Receivers 接收类
 -  ->特殊 Special □ Not fully supported 不完全支持
 - 接收入群申请 Receive group enter requests □ Not fully supported
 -  ->获得入群者信息 get applicant info      √ Supported
--  ->获得加群答案回复 get answers           × Not supported by IOTBOT
+-  ->获得加群答案回复 get answers           √ Supported β
 - 接收私聊 Receive private messages         × Not available yet
 -  ->文本 Text    × Not available yet
 -  ->图片 Picture × Not available yet
@@ -36,14 +36,14 @@ _Actions 操作类
 - 发送私聊消息 Send private messages        √ Fully supported
 - 撤回群消息 Delete group messages          √ Fully supported
 - 获取加入群列表 Get group list             √ Fully supported
-- 获取群成员列表 Get group member list      √ Unstable but supported
+- 获取群成员列表 Get group member list      √ Supported β
 - 获取登录Cookies Get login cookies         √ Fully supported
 - 群全员禁言 Group SHUTUP ALL               √ Fully supported
 - 群成员禁言 Group SHUTUP member            √ Fully supported
 - 处理入群申请 Answer group enter req       □ Not fully supported
 - ->同意/拒绝  Accept/Refuse      √ Supported
 - ->拒绝理由 Reason for refuse    √ Supported β
-- ->不再接收申请 Ingore forever   √ Supported β
+- ->不再接收申请 Ingore forever   √ Not Supported by QPO
 
 # Demo: Print the message received from group 使用示例：输出来自群的消息
 
