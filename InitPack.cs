@@ -50,6 +50,7 @@ namespace CQ2IOT
         /// <returns></returns>
         public static bool isInitPack(string pack)
         {
+            if (pack.Length < 1) return false;
             string code = pack.Substring(0, 1);
             return (code == "0");
         }

@@ -42,9 +42,8 @@ _Actions 操作类
 - 群成员禁言 Group SHUTUP member            √ Fully supported
 - 处理入群申请 Answer group enter req       □ Not fully supported
 - ->同意/拒绝  Accept/Refuse      √ Supported
-- ->拒绝理由 Reason for refuse    × Not supported by IOTBOT
-- ->不再接收申请 Ingore forever   × Not supported by IOTBOT
-
+- ->拒绝理由 Reason for refuse    √ Supported β
+- ->不再接收申请 Ingore forever   √ Supported β
 
 # Demo: Print the message received from group 使用示例：输出来自群的消息
 

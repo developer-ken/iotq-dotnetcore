@@ -197,6 +197,9 @@ namespace CQ2IOT
                     logger("eventhost", "Done.(" + (DateTime.Now - start).ToString() + ")", ConsoleColor.DarkGreen);
                     ready = true;
                     break;
+                case "尚未在线":
+                    reconnect();
+                    break;
             }
         }
 

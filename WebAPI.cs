@@ -31,9 +31,6 @@ namespace CQ2IOT
         /// <returns></returns>
         public static string _get(string url)
         {
-            lock ("urlreq")
-            {
-                Thread.Sleep(500);
                 string retString = string.Empty;
 
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
@@ -47,7 +44,6 @@ namespace CQ2IOT
                 streamReader.Close();
                 myResponseStream.Close();
                 return retString;
-            }
         }
 
         /// <summary>
@@ -58,29 +54,25 @@ namespace CQ2IOT
         /// <returns></returns>
         public static string _post(string url, string postData)
         {
-            lock ("urlreq")
+            string result = "";
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+            req.Method = "POST";
+            req.ContentType = "application/json";
+            byte[] data = Encoding.UTF8.GetBytes(postData);
+            req.ContentLength = data.Length;
+            using (Stream reqStream = req.GetRequestStream())
             {
-                Thread.Sleep(500);
-                string result = "";
-                HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
-                req.Method = "POST";
-                req.ContentType = "application/json";
-                byte[] data = Encoding.UTF8.GetBytes(postData);
-                req.ContentLength = data.Length;
-                using (Stream reqStream = req.GetRequestStream())
-                {
-                    reqStream.Write(data, 0, data.Length);
-                    reqStream.Close();
-                }
-                HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
-                Stream stream = resp.GetResponseStream();
-                //获取响应内容
-                using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
-                {
-                    result = reader.ReadToEnd();
-                }
-                return result;
+                reqStream.Write(data, 0, data.Length);
+                reqStream.Close();
             }
+            HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
+            Stream stream = resp.GetResponseStream();
+            //获取响应内容
+            using (StreamReader reader = new StreamReader(stream, Encoding.UTF8))
+            {
+                result = reader.ReadToEnd();
+            }
+            return result;
         }
 
         /// <summary>
@@ -217,6 +209,7 @@ namespace CQ2IOT
                 logger("debug_listgroup_retjson", str);
                 if (str == null) continue;
                 data_get = System.Text.Json.JsonSerializer.Deserialize<JsonModel.GroupListRet>(str);
+                if (data_get == null) continue;
                 gplist.AddRange(data_get.TroopList);
                 nexttoken = data_get.NextToken;
             } while (nexttoken.Length > 0);
@@ -337,9 +330,16 @@ namespace CQ2IOT
             string ret = LuaApiCaller("GetUserCook");
             JObject json = (JObject)JsonConvert.DeserializeObject(ret);
             string cookiestr = json.Value<string>("Cookies");
-            CookieContainer ck = new CookieContainer();
-            ck.SetCookies(new Uri("http://qq.com"), cookiestr);
-            return ck.GetCookies(new Uri("http://qq.com"));
+            CookieCollection ck = new CookieCollection();
+            string[] parts = cookiestr.Split(';');
+            foreach(string st in parts)
+            {
+                if (st == null || st.Length <= 1) continue;
+                string k = st.Split('=')[0];
+                string v = st.Split('=')[1];
+                ck.Add(new Cookie(k, v));
+            }
+            return ck;
         }
 
         /// <summary>
@@ -349,10 +349,11 @@ namespace CQ2IOT
         /// <param name="pass">true=同意,false=拒绝</param>
         /// <param name="msg"></param>
         /// <returns></returns>
-        public bool doGroupEnterReq(JObject seq, bool pass, string msg = "N/A")
+        public bool doGroupEnterReq(JObject seq, bool pass, string msg = null)
         {
             JObject jb = (JObject)seq.DeepClone();
             jb["Action"] = pass ? 11 : 12;//14忽略
+            jb["RefuseContent"] = msg;
             string ret = LuaApiCaller("AnswerInviteGroup", jb.ToString());
             JsonModel.ReqResult retv = System.Text.Json.JsonSerializer.Deserialize<JsonModel.ReqResult>(ret);
             return retv.Ret == 0;

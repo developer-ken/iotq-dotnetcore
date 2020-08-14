@@ -140,16 +140,10 @@ namespace CQ2IOT
             return true;
         }
 
-        public KeyValuePair<Guid, Exception>? popException()
+        public Dictionary<Guid, Exception>? popException()
         {
-            KeyValuePair<Guid, Exception>? sel = null;
-            foreach (KeyValuePair<Guid, Exception> e in exceptionqueue)
-            {
-                sel = e;
-                break;
-            }
-            if (sel != null) exceptionqueue.Remove(((KeyValuePair<Guid, Exception>)sel).Key);
-            return sel;
+            Dictionary<Guid, Exception> tmpp = exceptionqueue;
+            return exceptionqueue;
         }
 
         public void clearExceptions()
